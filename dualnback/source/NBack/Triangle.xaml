@@ -1,0 +1,23 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/client/2007"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d"
+	x:Class="NBack.Triangle"
+	d:DesignWidth="640" d:DesignHeight="480">
+
+	<Grid x:Name="LayoutRoot" Background="White" >
+		<Rectangle Width="120" Height="100" RadiusX="15" RadiusY="15" Stroke="Green" StrokeThickness="5" Fill="Black" />
+		<Rectangle Height="59" HorizontalAlignment="Left" Margin="124,88,0,0" VerticalAlignment="Top" Width="188" RadiusX="10" RadiusY="10" Fill="#FF00FFFF" Stroke="#FF000000" StrokeThickness="5"/>
+		<Path HorizontalAlignment="Left" Margin="36.1759986877441,109.550003051758,0,159.537002563477" VerticalAlignment="Stretch" Width="232.047" Fill="Blue" Stretch="Fill" Stroke="#FF000000" StrokeThickness="5" Data="M18.531116,215.9774 C8.9742594,195.14842 195.49962,243.50015 232.99953,156.49988 C270.49942,69.499611 210.77557,244.22699 199.6636,288.09055 C175.33028,297.09055 24.827665,301.68066 126.6636,315.09055 C228.49954,328.50043 120.86572,330.67221 117.96677,338.46304 C117.96677,338.46304 38.500431,259.50009 18.531116,215.9774 z"/>
+		<Path Height="170" HorizontalAlignment="Right" Margin="0,41.5,104.5,0" VerticalAlignment="Top" Width="113" Fill="#FFFFFFFF" Stretch="Fill" Stroke="#FF000000" StrokeThickness="5" Data="M425,122 L533,44 C533,122 533,200 533,200 C533,200 425,122 425,122"/>
+		<Rectangle HorizontalAlignment="Right" Margin="0,88,177.5,0" VerticalAlignment="Top" Width="40" Fill="#FFFFFFFF" Stroke="#FF000000" StrokeThickness="5" Height="75"/>
+		<Path HorizontalAlignment="Right" Margin="0,231.5,172.5,185.5" VerticalAlignment="Stretch" Width="51.118" Fill="#FFFFFFFF" Stretch="Fill" Stroke="#FF000000" Data="M467,232 C412,234 417,294 417,294"/>
+
+		</Grid>
+ 
+	
+	
+	
+</UserControl>

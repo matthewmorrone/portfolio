@@ -1,0 +1,166 @@
+<html>
+	<head>
+		<meta charset=utf-8>
+		<title>Lingo</title>
+		<script src="jquery.js"></script>
+		<link rel="stylesheet" type="text/css" href="styles.css"></link>
+	</head>
+	<body>
+	<p></p>
+	<div></div>
+	<script>
+	word = ""
+	t = 1
+	timer = 15
+	counterOn = false
+	wordlist = new Array()
+	
+	//this is a JQuery idiom for window.ready
+	$(function()
+	{
+		new_board()
+		$("button").focus()
+	})
+	function countdown()
+	{
+		timer--
+		if (timer == -1)
+		{
+			timer = 15
+			$("button").click()
+		}
+		$(".active").html(timer)	
+	}
+	function new_board()
+	{	
+		t = 0
+		
+		board = "<table>"
+		board += "<tr><th>Clue:</th><td></td><td></td><td></td><td></td><td></td><td class='timer active'>15</td></tr>"			
+		board += "<tr class='bottom'><th class='bottom'>Guess: </th><td colspan=5 class='bottom'><input class='bottom' placeholder='type guess here...' type='text'></input></td><td class='bottom'><button class='bottom'>Begin</button></td></tr>"
+		board += "</table>"
+		
+		$("div").html(board)
+		$("input").prop('disabled', true)
+		$("button").prop('disabled', true)
+		
+		$.post("lingo.php", {"mode":"1"}, function(data) 
+		{
+			//alert(data)
+			word = data
+			while (wordlist.indexOf(data) != -1)
+			{
+				$.post("lingo.php", {"mode":"1"}, function(data)
+				{
+					word = data
+					//wordlist.push("dup")
+				})
+			}
+			wordlist.push(word)
+			//alert(wordlist)
+			
+			word = data
+			$("button").prop('disabled', false)
+			$("button").click(function()
+			{
+				$("input").prop('disabled', false)
+				play_board()
+				t == 4 ? $("button").html("1 guess left") : $("button").html((5-t)+" guesses left")
+				
+				$("table tr:eq(0) td:eq(0)").html(word[0]).addClass("correct")
+				
+				if (!counterOn)
+				{
+					counter = setInterval(function() {countdown()}, 1000)
+					counterOn = true
+				}
+			})
+		}, "json")
+	}
+	
+	function play_board()
+	{
+		$("input").on("keyup", function()
+		{
+			if ($(this).val().length == 5)
+			{
+				$("button").focus()
+			}
+		})
+		$("button").on("click", function() 
+		{
+			$("input").focus()
+			timer = 15
+			$(".active").removeClass("active")
+			t++
+			if (t <= 5)
+			{
+				$("table tr:eq("+(t-1)+")").after("<tr><th>Try #"+t+":</th><td></td><td></td><td></td><td></td><td></td><td class='timer active'>15</td></tr>")
+			}
+			t == 4 ? $("button").html("1 guess left") : $("button").html((5-t)+" guesses left")
+			
+			guess = $("input").val(); $("input").val("")
+			
+			//	Note: if a letter is repeated by the user but only occurs once in the word, 
+			//	only one of the user entries should be shown in red or blue – the other 
+			//	should be lower case black.  In this case, the “more correct” should be 
+			//	shown in color.  Similarly, if both occurrences of the letter are in the 
+			//	word but only one is in the correct location, one letter should be shown 
+			//	in red and one in blue.
+			//	Use frequency count table and deduct from the table if correct
+			$("table tr:eq("+t+") td").each(function(i, o)
+			{
+				if (word[i] == guess[i])
+				{
+					$(this).html(guess[i]).addClass("correct")
+				}
+				else if (word.indexOf(guess[i]) > -1)
+				{
+					$(this).html(guess[i]).addClass("present")
+				}
+				else
+				{
+					$(this).html(guess[i]).addClass("wrong")
+				}
+			})	
+			if (word == guess)
+			{
+				$("input").prop('disabled', true).prop('placeholder', "Win!")	
+				$("button").html("Play again.")
+				clearInterval(counter)
+				counterOn = false
+				
+				//send info back once game is over
+				$.post(
+				"lingo.php",
+				{"mode":"2", "username":"currentuser"},
+				function(data)
+				{
+					alert(data)
+				}, 
+				"json")
+				
+				
+			}
+			else if (t == 6)
+			{
+				$("table tr:eq("+(t-1)+")").after("<tr><th>Answer:</th><td></td><td></td><td></td><td></td><td></td><td></td></tr>")
+				$("table tr:eq("+(t)+") td").each(function(i, o)
+				{
+					$(this).html(word[i]).addClass("correct")
+				})
+				$("input").prop('disabled', true).prop('placeholder', "Fail.")
+				$("button").html("Play again.")
+				clearInterval(counter)
+				counterOn = false
+			}	
+			if (t == 7)
+			{
+				new_board()
+			}
+		})
+	}
+	</script>
+	</body>
+</html>
+

@@ -1,0 +1,63 @@
+*
+{
+	margin: 0px;
+	padding: 0px;
+}
+body
+{
+	width: 100%;
+	height: 100%;	
+}
+table
+{
+	margin: auto;
+}
+table, th, td 
+{
+	border: 1px solid black; 
+	border-collapse: collapse; 
+}
+th, td
+{
+	width: 100px; 
+	height: 100px;
+	font-family: sans-serif; 
+	text-align: center;
+}
+th                 
+{
+	font-size: 12pt;
+}
+td
+{
+	font-size: 32pt; 
+}
+.correct      
+{
+	color: red;
+	text-transform: uppercase;
+}
+.present         
+{
+	color: blue;
+	text-transform: uppercase;
+}
+.wrong           
+{
+	text-transform: lowercase; 
+	color: black; 
+}
+.timer
+{
+	color: green;
+}
+input[type = text]
+{
+	width: 99%; 
+	height: 100%;
+}  
+.bottom
+{
+	height: 20px; 
+}
+

@@ -1,0 +1,20 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/client/2007"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d"
+	x:Class="NBack.Speaker"
+	d:DesignWidth="160" d:DesignHeight="120"
+	Name="SpeakerIcon">
+
+	<Grid x:Name="LayoutRoot" Background="Transparent" RenderTransformOrigin="0.25,0.25" >
+				<Path HorizontalAlignment="Left" VerticalAlignment="Bottom" Fill="#FFF5F2F2" Stretch="Fill" Stroke="#FF000000" StrokeThickness="5" />
+		
+		<Path HorizontalAlignment="Right" Margin="0,8,3.83299994468689,0" VerticalAlignment="Top" Width="16.556" Fill="#00FFFFFF" Stretch="Fill" Stroke="#FF81F735" StrokeThickness="5" Data="M405.52213,144.9575 C405.52213,144.9575 431.52243,194.9575 405.52213,253.9575" d:LayoutOverrides="HorizontalAlignment, VerticalAlignment, Width" Height="93.5"/>
+		<Path HorizontalAlignment="Right" Margin="0,19.5,24.3889999389648,0" VerticalAlignment="Top" Width="14.111" Fill="#00FFFFFF" Stretch="Fill" Stroke="#FF81F735" StrokeThickness="5" Data="M527.55609,154.8158 C527.55609,154.8158 547.05536,185.3158 529.00006,226.9998" Height="68.184" d:LayoutOverrides="HorizontalAlignment, Width, Height"/>
+		<Path HorizontalAlignment="Stretch" Margin="48.5,9.5,42.5,18.5" VerticalAlignment="Stretch" Fill="#FFFFFFFF" Stretch="Fill" Stroke="#FF000000" StrokeThickness="5" Data="M115,12 L115,99 L51,53 z"/>
+<Rectangle HorizontalAlignment="Right" VerticalAlignment="Top" Width="32" Fill="#FFAFA9A9" Stroke="#FF000000" StrokeThickness="5" Height="51" Margin="0,26.6840000152588,91,0"/>
+
+	</Grid>
+</UserControl>

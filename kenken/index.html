@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!-- saved from url=(0029)http://www.mlsite.net/neknek/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+		<meta http-equiv="Content-Script-Type" content="text/javascript">
+
+  		<style type="text/css">
+			/* Basic Style */
+			html {
+				background:			white;
+			}
+			body {
+				color:				black;
+				font-size:			75%;
+			}
+
+			/* Development Style */
+			div.banner {
+				position:			absolute;
+				left:				1em;
+				top:				1em;
+				width:				65em;
+				text-align:			center;
+				border-bottom:		2px solid black;
+			}
+			div.banner p {
+				margin:				0.5em 0px;
+				font-size:			1.5em;
+			}
+			div.copy {
+				position:			absolute;
+				left:				1em;
+				top:				5em;
+				width:				24em;
+			}
+			div.field {
+				position:			absolute;
+				left:				25em;
+				top:				5em;
+				width:				41em;
+				text-align:			center;
+			}
+			p.controls {
+				padding-left:			4em;
+			}
+			input#generate {
+				margin-left:			4em;
+			}
+			input#cage_value {
+				margin-left:			2em;
+				width:				5em;
+				text-align:			right;
+			}
+			table {
+				margin:			0px auto;
+				border-collapse:	collapse;
+			}
+			td {
+				width:				4em;
+				height:				4em;
+				border-width:		1px;
+				padding:			0px;
+				text-align:			center;
+			}
+			td.board_header {
+				vertical-align:		center;
+			}
+			td.board_cell {
+				vertical-align:		top;
+			}
+			td p {
+				margin:				0px;
+				border:				0px;
+				padding:			0px;
+			}
+			td p.cage_header {
+				height:				1.5em;
+				text-align:			left;
+			}
+			td p.cage_header span {
+				font-family:		Verdana;
+				font-weight:		bold;
+				font-size:			0.75em;
+				padding-left:		0.5em;
+			}
+			td p.cell_data {
+				text-align:			center;
+			}
+		</style>
+		<title>NekNek - A solver for KenKen puzzles</title>
+	<style type="text/css"></style></head>
+
+	<body>
+		<!--[if lt IE 6]>
+			<P>We're sorry, but this application is not compatible with IE versions prior to 6.0; you'll need to
+			<A href="http://www.microsoft.com/downloads/details.aspx?FamilyID=1E1550CB-5E5D-48F5-B02B-20B602228DE6&displaylang=en">upgrade</A>,
+			or use another <A href="http://www.mozilla.com/en-US/firefox/">browser</A>.</P>
+			<P>We apologize for the inconvenience.</P>
+			<P>Return to the <A href="/">home page</A>.</P>
+		<![endif]-->
+		<div class="banner">
+			<p>Want to play over a thousand free puzzles?  Visit our <a href="http://www.mlsite.net/neknek/play.php">puzzle archive</a>!</p>
+		</div>
+		<div class="copy">
+			<h4>Introduction</h4>
+			<p>This is a solver for <a href="http://www.kenken.com/aboutus_play.html">KenKen</a> puzzles.</p>
+			<p>Begin by selecting a template (either a blank NxN puzzle, or one of the demos) from the drop-down list over the playfield.</p>
+			<p>Lay out the cages:</p>
+			<ul>
+				<li>Click next to a highlighted cell to add the clicked cell to the highlighted cage.</li>
+				<li>Click on a highlighted cell to remove the clicked cell from the highlighted cage.</li>
+				<li>Click on any other cell to highlight the cage containing the clicked cell.</li>
+			</ul>
+			<p>Use the inputs below the playfield to change the rules governing the highlighted cage.  Please note two points:</p>
+			<ul>
+				<li>The final choice in the dropdown ("produce a result of") assigns an "unknown"
+				operator to the cage; this is how you lay out "no-op" puzzles.</li>
+				<li>If you wish to leave a cage completely unconstrained, assign it a blank value.</li>
+			</ul>
+			<p>Click the "Solve" button to search for and display a solution to the puzzle.  You may also click the "Make Puzzle" button;
+			this will search for a solution, but it will not show it to you immediately.  Instead, it will present the puzzle you just
+			created in our playfield interface.  This interface allows you to get cell-by-cell hints, and to continue to work on the
+			puzzle, as opposed to simply seeing the entire answer revealed at once.</p>
+			<h4>Further Reading</h4>
+			<p>You might be interested in some blog articles describing the development of the code behind this solver:</p>
+			<ul>
+				<li><a href="http://www.mlsite.net/blog/?p=88">KenKen vs. Sudoku</a></li>
+				<li><a href="http://www.mlsite.net/blog/?p=89">Constraint design</a></li>
+				<li><a href="http://www.mlsite.net/blog/?p=90">Constraint objects</a></li>
+				<li><a href="http://www.mlsite.net/blog/?p=91">Puzzle representation</a></li>
+				<li><a href="http://www.mlsite.net/blog/?p=95">Solver search algorithm</a></li>
+				<li><a href="http://www.mlsite.net/blog/?p=97">Performance tuning (Part 1)</a></li>
+				<li><a href="http://www.mlsite.net/blog/?p=98">Performance tuning (Part 2)</a></li>
+				<li><a href="http://www.mlsite.net/blog/?p=100">Performance tuning (Part 3)</a></li>
+				<li><a href="http://www.mlsite.net/blog/?p=102">Generalization to (Jigsaw) Sudoku</a></li>
+				<li><a href="http://www.mlsite.net/blog/?p=121">Finding multiple solutions</a></li>
+				<li><a href="http://www.mlsite.net/blog/?p=146">3+ cell difference &amp; division cages</a></li>
+				<li><a href="http://www.mlsite.net/blog/?p=452">No-op puzzles</a></li>
+				<li><a href="http://www.mlsite.net/blog/?p=999">User-generated puzzles</a></li>
+			</ul>
+			<p>If you have any questions, please <a href="http://www.mlsite.net/mail.xhtml">e-mail</a> me.</p>
+		</div>
+		<div class="field">
+			<p class="controls">
+				<select id="load"><option value="0">New 3x3 Map</option><option value="1">New 4x4 Map</option><option value="2">New 5x5 Map</option><option value="3">New 6x6 Map</option><option value="4">New 7x7 Map</option><option value="5">New 8x8 Map</option><option value="6">New 9x9 Map</option><option value="7">Demo 3x3 Map</option><option value="8">Demo 6x6 Map</option><option value="9">Demo 9x9 Map</option></select>
+				<input id="reset" type="button" value="Reset">
+				<input id="generate" type="button" value="Make Puzzle">
+				<input id="solve" type="button" value="Solve">
+			</p>
+			<div id="test_div"><table><tbody><tr><td></td><td class="board_header">1</td><td class="board_header">2</td><td class="board_header">3</td><td class="board_header">4</td><td class="board_header">5</td><td class="board_header">6</td></tr><tr><td class="board_header">A</td><td class="board_cell" style="border-color: black rgb(221, 221, 221) rgb(221, 221, 221) black; border-style: solid dotted dotted solid; background-color: rgb(204, 255, 238); background-position: initial initial; background-repeat: initial initial;"><p class="cage_header"><span>13+</span></p></td><td class="board_cell" style="border-color: black black rgb(221, 221, 221) rgb(221, 221, 221); border-style: solid solid dotted dotted; background-color: rgb(204, 255, 238); background-position: initial initial; background-repeat: initial initial;"><p class="cage_header"><span>&nbsp;</span></p></td><td class="board_cell" style="border-color: black rgb(221, 221, 221) black black; border-style: solid dotted solid solid;"><p class="cage_header"><span>180x</span></p></td><td class="board_cell" style="border-color: black rgb(221, 221, 221) rgb(221, 221, 221); border-style: solid dotted dotted;"><p class="cage_header"><span>&nbsp;</span></p></td><td class="board_cell" style="border-color: black black black rgb(221, 221, 221); border-style: solid solid solid dotted;"><p class="cage_header"><span>&nbsp;</span></p></td><td class="board_cell" style="border-color: black black rgb(221, 221, 221); border-style: solid solid dotted;"><p class="cage_header"><span>9+</span></p></td></tr><tr><td class="board_header">B</td><td class="board_cell" style="border-color: rgb(221, 221, 221) rgb(221, 221, 221) black black; border-style: dotted dotted solid solid; background-color: rgb(204, 255, 238); background-position: initial initial; background-repeat: initial initial;"><p class="cage_header"><span>&nbsp;</span></p></td><td class="board_cell" style="border-color: rgb(221, 221, 221) black black rgb(221, 221, 221); border-style: dotted solid solid dotted; background-color: rgb(204, 255, 238); background-position: initial initial; background-repeat: initial initial;"><p class="cage_header"><span>&nbsp;</span></p></td><td class="board_cell" style="border-color: black; border-style: solid;"><p class="cage_header"><span>2=</span></p></td><td class="board_cell" style="border-color: rgb(221, 221, 221) black black; border-style: dotted solid solid;"><p class="cage_header"><span>&nbsp;</span></p></td><td class="board_cell" style="border-color: black black rgb(221, 221, 221); border-style: solid solid dotted;"><p class="cage_header"><span>20x</span></p></td><td class="board_cell" style="border-color: rgb(221, 221, 221) black; border-style: dotted solid;"><p class="cage_header"><span>&nbsp;</span></p></td></tr><tr><td class="board_header">C</td><td class="board_cell" style="border-color: black black rgb(221, 221, 221); border-style: solid solid dotted;"><p class="cage_header"><span>15+</span></p></td><td class="board_cell" style="border-color: black rgb(221, 221, 221) black black; border-style: solid dotted solid solid;"><p class="cage_header"><span>6x</span></p></td><td class="board_cell" style="border-color: black black black rgb(221, 221, 221); border-style: solid solid solid dotted;"><p class="cage_header"><span>&nbsp;</span></p></td><td class="board_cell" style="border-color: black black rgb(221, 221, 221); border-style: solid solid dotted;"><p class="cage_header"><span>11+</span></p></td><td class="board_cell" style="border-color: rgb(221, 221, 221) black black; border-style: dotted solid solid;"><p class="cage_header"><span>&nbsp;</span></p></td><td class="board_cell" style="border-color: rgb(221, 221, 221) black black; border-style: dotted solid solid;"><p class="cage_header"><span>&nbsp;</span></p></td></tr><tr><td class="board_header">D</td><td class="board_cell" style="border-color: rgb(221, 221, 221) black; border-style: dotted solid;"><p class="cage_header"><span>&nbsp;</span></p></td><td class="board_cell" style="border-color: black; border-style: solid;"><p class="cage_header"><span>3=</span></p></td><td class="board_cell" style="border-color: black rgb(221, 221, 221) black black; border-style: solid dotted solid solid;"><p class="cage_header"><span>&nbsp;</span></p></td><td class="board_cell" style="border-color: rgb(221, 221, 221) black black rgb(221, 221, 221); border-style: dotted solid solid dotted;"><p class="cage_header"><span>&nbsp;</span></p></td><td class="board_cell" style="border-color: black rgb(221, 221, 221) rgb(221, 221, 221) black; border-style: solid dotted dotted solid;"><p class="cage_header"><span>9+</span></p></td><td class="board_cell" style="border-color: black black black rgb(221, 221, 221); border-style: solid solid solid dotted;"><p class="cage_header"><span>&nbsp;</span></p></td></tr><tr><td class="board_header">E</td><td class="board_cell" style="border-color: rgb(221, 221, 221) black black; border-style: dotted solid solid;"><p class="cage_header"><span>&nbsp;</span></p></td><td class="board_cell" style="border-color: black rgb(221, 221, 221) black black; border-style: solid dotted solid solid;"><p class="cage_header"><span>2/</span></p></td><td class="board_cell" style="border-color: black black black rgb(221, 221, 221); border-style: solid solid solid dotted;"><p class="cage_header"><span>&nbsp;</span></p></td><td class="board_cell" style="border-color: black rgb(221, 221, 221) black black; border-style: solid dotted solid solid;"><p class="cage_header"><span>&nbsp;</span></p></td><td class="board_cell" style="border-color: rgb(221, 221, 221) black black rgb(221, 221, 221); border-style: dotted solid solid dotted;"><p class="cage_header"><span>&nbsp;</span></p></td><td class="board_cell" style="border-color: black black rgb(221, 221, 221); border-style: solid solid dotted;"><p class="cage_header"><span>18+</span></p></td></tr><tr><td class="board_header">F</td><td class="board_cell" style="border-color: black rgb(221, 221, 221) black black; border-style: solid dotted solid solid;"><p class="cage_header"><span>8+</span></p></td><td class="board_cell" style="border-color: black rgb(221, 221, 221); border-style: solid dotted;"><p class="cage_header"><span>&nbsp;</span></p></td><td class="board_cell" style="border-color: black black black rgb(221, 221, 221); border-style: solid solid solid dotted;"><p class="cage_header"><span>&nbsp;</span></p></td><td class="board_cell" style="border-color: black rgb(221, 221, 221) black black; border-style: solid dotted solid solid;"><p class="cage_header"><span>&nbsp;</span></p></td><td class="board_cell" style="border-color: black rgb(221, 221, 221); border-style: solid dotted;"><p class="cage_header"><span>&nbsp;</span></p></td><td class="board_cell" style="border-color: rgb(221, 221, 221) black black rgb(221, 221, 221); border-style: dotted solid solid dotted;"><p class="cage_header"><span>&nbsp;</span></p></td></tr></tbody></table></div>
+			<p class="controls">
+				Highlighted cell(s) must
+				<select id="cage_type">
+					<option value="!">equal</option>
+					<option value="+">produce a sum of</option>
+					<option value="-">produce a difference of</option>
+					<option value="*">produce a product of</option>
+					<option value="/">produce a quotient of</option>
+					<option value="?">produce a result of</option>
+				</select>
+				<input id="cage_value" type="text">
+			</p>
+		</div>
+
+		<script type="text/javascript" src="neknek.js"></script>
+		<script type="text/javascript">
+			window.onload = function() { app.RenderCageControls(); };
+		</script>
+
+
+</body>
+</html>

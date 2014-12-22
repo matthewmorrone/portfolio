@@ -1,0 +1,87 @@
+<html>
+	<head>
+	
+	<script src='jquery.js'></script>
+	<style>
+	table
+	{
+		border: 1px solid black;
+		border-collapse: collapse;
+	}
+	.cell
+	{
+		height: 80px;
+		width: 80px;
+		text-align: center;
+	}
+	.inner td
+	{
+		height: 40px;
+		width: 40px;
+		text-align: center;
+	}
+	.outer:nth-child(2)
+	{
+		border-bottom: 2px solid black;
+	}
+	.cell:nth-child(2)
+	{
+		border-right: 2px solid black;
+	}
+
+	</style>
+	<script>
+	board = new Array(new Array(0, 0, 1, 0), new Array(0, 0, 0, 0), new Array(0, 0, 0, 0), new Array(1, 0, 0, 0))
+	function generate(x, y)
+	{
+		result = "<table id='sudoku'>"
+		for (i = 0; i < y; i++)
+		{
+			result += "<tr class='outer'>"
+			for (j = 0; j < x; j++)
+			{
+				result += "<td class='cell' x='"+j+"' y='"+j+"' id='"+i+j+"'>"+board[i][j]+"</td>"
+			}		
+			result += "</tr>"		
+		}
+		result += "</table>"
+		return result
+	}
+	function reduce()
+	{
+		$(".cell").each(function()
+		{
+			if ($(this).html() == 1)
+			{
+				var x = $(this).attr("x")
+				$(this).parent("tr").find("."+$(this).html()).css("color", "white")
+				$("#sudoku .outer").each(function() {$(this).find(".cell").eq(x).find("."+x).css("color", "white")})
+			}
+		})
+		$(".tiny").click(function()
+		{
+			var x = $(this).parents(".cell").attr("x")
+			$(this).parents(".outer").find("."+$(this).html()).css("color", "white")
+			$("#sudoku .outer").each(function() {$(this).find(".cell").eq(x).find("."+x).css("color", "white")})
+		})
+	}
+	$(function()
+	{
+		$("#contents").html(generate(4, 4))
+		$("#sudoku td").each(function()
+		{
+			if ($(this).html() == 0)
+			{
+				$(this).html("<table class='inner'><tr><td class='tiny 1'>1</td><td class='tiny 2'>2</td></tr><tr><td class='tiny 3'>3</td><td class='tiny 4'>4</td></tr></table>")
+			}
+		})
+		reduce()
+	})
+	</script>
+	<title>SuDoKu</title>
+	</head>
+	<body>
+	<div id="contents"></div>
+	<input type="button" name="undo" value="undo" onclick="undo()" />
+	</body>
+</html>

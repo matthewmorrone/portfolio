@@ -1,0 +1,7 @@
+Peter Pitt|abcdefg|pel39@pitt.edu
+Peter Digiopolis|abcdefg|pjlennon@digiopolis.com
+Ana PlayerTwo|abcdegf|pel39_player1@pitt.edu
+Betty PlayerThree|abcdefg|pel39_player2@pitt.edu
+Chris PlayerFour|abcdefg|pel39_player3@pitt.edu
+Dennis PlayerFive|abcdefg|pel39_player4@pitt.edu
+Eugene PlayerSix|abcdegf|pel39_player5@pitt.edu

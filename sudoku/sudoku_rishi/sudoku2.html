@@ -1,0 +1,260 @@
+<html>
+  <head>
+    <title>sudoku!</title>
+    <script type="text/javascript">
+      var board = new Array(new Array(1, 0, 0, 0),
+			    new Array(0, 0, 0, 0),
+			    new Array(0, 0, 0, 0),
+			    new Array(0, 0, 0, 1)			    
+			   );
+      
+      var lastMove = -1;
+      var lastValid = new Array();
+
+      function checkBox(x, y, i)
+      {
+	  // quadrant 1
+	  if ([0,1].indexOf(x) != -1 && [0,1].indexOf(y) != -1) 
+	  {
+	      for(j=0; j<=1; j++)
+	      {
+		  for(k=0; k<=1; k++)
+		  {
+		      if(j==x && k==y) continue;
+		      if(board[j][k]==i) return false;
+		  }
+	      }
+	      return true;
+	  }
+	  // quadrant 2
+	  if ([0,1].indexOf(x) != -1 && [2,3].indexOf(y) != -1) 
+	  {
+	      for(j=0; j<=1; j++)
+	      {
+		  for(k=2; k<=3; k++)
+		  {
+		      if(j==x && k==y) continue;
+		      if(board[j][k]==i) return false;
+		  }
+	      }
+	      return true;
+	  }
+	  // quadrant 3
+	  if ([2,3].indexOf(x) != -1 && [0,1].indexOf(y) != -1) 
+	  {
+	      for(j=2; j<=3; j++)
+	      {
+		  for(k=0; k<=1; k++)
+		  {
+		      if(j==x && k==y) continue;
+		      if(board[j][k]==i) return false;
+		  }
+	      }
+	      return true;
+	  }
+	  // quadrant 4
+	  if ([2,3].indexOf(x) != -1 && [2,3].indexOf(y) != -1) 
+	  {
+	      for(j=2; j<=3; j++)
+	      {
+		  for(k=2; k<=3; k++)
+		  {
+		      if(j==x && k==y) continue;
+		      if(board[j][k]==i) return false;
+		  }
+	      }
+	      return true;
+	  }
+	  return true;
+      }
+
+      function checkCol(x, y, i)
+      {
+	  for(j=0; j<4; j++)
+	  {
+	      if (j==x) continue;
+	      if(board[j][y] == i)
+	      {
+		  return false;
+	      }
+	  }
+	  return true;
+      }
+
+      function checkRow(x, y, i)
+      {
+	  for(j=0; j<4; j++)
+	  {
+	      if(j==y) continue;
+	      if(board[x][j] == i)
+	      {
+		  return false;
+	      }
+	  }
+	  return true;
+      }
+
+      function undo()
+      {
+	  if (lastMove != -1)
+	  {
+	      lastMove = lastMove.toString();
+	      var x = lastMove.substring(0,1);
+	      var y = lastMove.substring(1,2);
+	      board[x][y] = 0;
+	      updateBoard()
+	      lastMove = -1;
+	  }
+      }
+
+      function load(val, divid)
+      {
+	  divid = divid.toString();
+	  var x = divid.substring(0,1);
+	  var y = divid.substring(1,2);
+	  board[x][y] = val;
+	  lastMove = divid;
+	  updateBoard();
+      }
+
+      function updateBoard()
+      {
+	  for (x=0; x<4; x++)
+	  {
+	      for (y=0; y<4; y++)
+	      {
+		  var tableOut = "";
+		  var divchange = (x.toString())+(y.toString());
+		  if(board[x][y] == 0)
+		  {
+		      tableOut += ("<table cellpadding='3' border='0'>");
+		      tableOut += ("<tr>");
+		      for (i=1; i<3; i++)
+		      {
+			  if(!checkBox(x,y,i)) continue;
+			  if(!checkRow(x,y,i)) continue;
+			  if(!checkCol(x,y,i)) continue;
+			  tableOut += ("<td style='border: 0;'><a onclick='load("+i+",\""+divchange+"\")'>"+i+"</a></td>");
+		      }
+		      tableOut += ("</tr>");
+		      tableOut += ("<tr>");
+		      for (i=3; i<5; i++)
+		      {
+			  if(!checkBox(x,y,i)) continue;
+			  if(!checkRow(x,y,i)) continue;
+			  if(!checkCol(x,y,i)) continue;
+			  tableOut += ("<td style='border: 0;'><a onclick='load("+i+",\""+divchange+"\")'>"+i+"</a></td>");			  
+		      }
+		      tableOut += ("</tr></table>");		      
+		      document.getElementById(divchange).innerHTML = tableOut;
+		  }
+		  else
+		  {
+		      document.getElementById(divchange).innerHTML = "<h2>"+board[x][y]+"</h2>";
+		  }			      
+	      }
+	  }
+      }
+      window.onload = updateBoard;
+      
+    </script>
+  </head>
+  <body>
+    <!-- Table game is payed on -->
+    <table width="400" height="400" border="5" align="center">
+      <!-- Row 0 -->      
+      <tr>
+	<!-- Cell 00 -->      	
+	<td align="center" width="100" height="100">
+	  <div id="00">	    
+	  </div>
+	</td>
+	<!-- Cell 01 -->      		
+	<td align="center" width="100" height="100">
+	  <div id="01">
+	  </div>
+	</td>
+	<!-- Cell 02 -->      		
+	<td align="center" width="100" height="100">
+	  <div id="02">
+	  </div>
+	</td>
+	<!-- Cell 03 -->      		
+	<td align="center" width="100" height="100">
+	  <div id="03">
+	  </div>
+	</td>
+      </tr>
+	<!-- Row 1 -->      		
+      <tr>
+	<!-- Row 10 -->      		
+	<td align="center" width="100" height="100">
+	  <div id="10">
+	  </div>
+	</td>
+	<!-- Cell 11 -->      		
+	<td align="center" width="100" height="100">
+	  <div id="11">
+	  </div>
+	</td>
+	<!-- Cell 12 -->      		
+	<td align="center" width="100" height="100">
+	  <div id="12">
+	  </div>
+	</td>
+	<!-- Cell 13 -->      		
+	<td align="center" width="100" height="100">
+	  <div id="13">
+	  </div>
+	</td>
+      </tr>
+      <!-- Row 2 -->      		
+      <tr>
+	<!-- Cell 20 -->      		
+	<td align="center" width="100" height="100">
+	  <div id="20">
+	  </div>
+	</td>
+	<!-- Cell 21 -->
+	<td align="center" width="100" height="100">
+	  <div id="21">
+	  </div>
+	</td>
+	<!-- Cell 22 -->
+	<td align="center" width="100" height="100">
+	  <div id="22">
+	  </div>
+	</td>
+	<!-- Cell 23 -->
+	<td align="center" width="100" height="100">
+	  <div id="23">
+	  </div>
+	</td>
+      </tr>
+      <!-- Row 3 -->
+      <tr>
+	<!-- Cell 30 -->
+	<td align="center" width="100" height="100">
+	  <div id="30">
+	  </div>
+	</td>
+	<!-- Cell 31 -->
+	<td align="center" width="100" height="100">
+	  <div id="31">
+	  </div>
+	</td>
+	<!-- Cell 32 -->
+	<td align="center" width="100" height="100">
+	  <div id="32">
+	  </div>
+	</td>
+	<!-- Cell 33 -->
+	<td align="center" width="100" height="100">
+	  <div id="33">
+	  </div>
+	</td>
+      </tr>
+    </table>
+    <input type="button" name="undo" value="undo" onclick="undo()" />
+  </body>
+</html>

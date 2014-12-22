@@ -1,0 +1,130 @@
+<html>
+<head>
+<title>Clock</title>
+<script type="text/javascript">
+
+var H = '....'
+var H = H.split('')
+var M = '.....'
+var M = M.split('')
+var S = '......'
+var S = S.split('')
+var Ypos = 0
+var Xpos = 0
+var Ybase = 8
+var Xbase = 8
+var dots = 12
+
+function clock()
+{
+    var time = new Date()
+    var secs = time.getSeconds()
+    var sec =- 1.57+Math.PI*secs/30
+    var mins = time.getMinutes()
+    var min =- 1.57+Math.PI*mins/30
+    var hr = time.getHours()
+    var hrs =- 1.57+Math.PI*hr/6+Math.PI*parseInt(time.getMinutes())/360
+    for (i = 0; i < dots; i++)
+    {
+        document.getElementById("dig"+(i+1)).style.top=0-15+40*Math.sin(-0.49+dots+i/1.9).toString()+"px"
+        document.getElementById("dig"+(i+1)).style.left=0-14+40*Math.cos(-0.49+dots+i/1.9).toString()+"px"
+    }
+    for (i = 0; i < S.length; i++)
+    {
+        document.getElementById("sec"+(i+1)).style.top=Ypos+i*Ybase*Math.sin(sec).toString()+"px"
+        document.getElementById("sec"+(i+1)).style.left=Xpos+i*Xbase*Math.cos(sec).toString()+"px"
+    }
+    for (i = 0; i < M.length; i++)
+    {
+        document.getElementById("min"+(i+1)).style.top=Ypos+i*Ybase*Math.sin(min).toString()+"px"
+        document.getElementById("min"+(i+1)).style.left=Xpos+i*Xbase*Math.cos(min).toString()+"px"
+    }
+    for (i = 0; i < H.length; i++)
+    {
+        document.getElementById("hour"+(i+1)).style.top=Ypos+i*Ybase*Math.sin(hrs).toString()+"px"
+        document.getElementById("hour"+(i+1)).style.left=Xpos+i*Xbase*Math.cos(hrs).toString()+"px"
+    }
+    setTimeout('clock()', 50)
+}
+</script>
+<style type="text/css">
+*
+{
+    margin: 0px;
+    padding: 0px;
+}
+body
+{
+    overflow: hidden; 
+}
+div.dig, div.hour, div.min, div.sec
+{
+    position: absolute;
+}
+div.hour, div.min, div.sec
+{
+    width: 2px;
+    height: 2px;
+    font-size: 2px;
+    background: #ffffff;
+}
+div.dig
+{
+    width: 30px;
+    height: 30px;
+    font-family: arial, verdana, sans-serif;
+    font-size: 14px;
+    color: #ffffff;
+    text-align: center;
+    padding-top: 10px;
+}
+/*#clockwrapper
+{
+    position: absolute;
+    z-index: -1;
+    background-color: rgba(0,0,0,0.5);
+}*/
+#clockdiv
+{
+    position: absolute;
+    right: 47.5px;
+    top: 47.5px;
+}
+</style>
+</head>
+<body onload="clock()">
+<!-- <div id="clockwrapper"></div> -->
+<div id="clockdiv">
+	<div id="dig1" class="dig" style="top: -49.823017416293006px; left: 5.681398782214497px; ">1</div>
+	<div id="dig2" class="dig" style="top: -35.22322574975618px; left: 20.51117413642136px; ">2</div>
+	<div id="dig3" class="dig" style="top: -15.149561067984727px; left: 25.99972039260954px; ">3</div>
+	<div id="dig4" class="dig" style="top: 4.964585696333941px; left: 20.661438486793045px; ">4</div>
+	<div id="dig5" class="dig" style="top: 19.67486622013351px; left: 5.941255041141314px; ">5</div>
+	<div id="dig6" class="dig" style="top: 24.99961068465482px; left: -14.17647967601978px; ">6</div>
+	<div id="dig7" class="dig" style="top: 19.497556682108367px; left: -34.24644618111337px; ">7</div>
+	<div id="dig8" class="dig" style="top: 4.657959453254431px; left: -48.83625453653427px; ">8</div>
+	<div id="dig9" class="dig" style="top: -15.50250869487137px; left: -53.9968434380962px; ">9</div>
+	<div id="dig10" class="dig" style="top: -35.526961509992724px; left: -48.3313828904004px; ">10</div>
+	<div id="dig11" class="dig" style="top: -49.995328363127186px; left: -33.37335780800288px; ">11</div>
+	<div id="dig12" class="dig" style="top: -54.99141883678707px; left: -13.171495672508438px; ">12</div>
+	<div id="hour1" class="hour" style="top: 0px; left: 0px; "></div>
+	<div id="hour2" class="hour" style="top: -0.48202943021930317px; left: 7.985464772222244px; "></div>
+	<div id="hour3" class="hour" style="top: -0.9640588604386063px; left: 15.970929544444488px; "></div>
+	<div id="hour4" class="hour" style="top: -1.4460882906579096px; left: 23.95639431666673px; "></div>
+	<div id="min1" class="min" style="top: 0px; left: 0px; "></div>
+	<div id="min2" class="min" style="top: -5.949419491397124px; left: -5.34830886499499px; "></div>
+	<div id="min3" class="min" style="top: -11.898838982794247px; left: -10.69661772998998px; "></div>
+	<div id="min4" class="min" style="top: -17.848258474191372px; left: -16.044926594984968px; "></div>
+	<div id="min5" class="min" style="top: -23.797677965588495px; left: -21.39323545997996px; "></div>
+	<div id="sec1" class="sec" style="top: 0px; left: 0px; "></div>
+	<div id="sec2" class="sec" style="top: 7.823853799691748px; left: -1.6695243996566775px; "></div>
+	<div id="sec3" class="sec" style="top: 15.647707599383496px; left: -3.339048799313355px; "></div>
+	<div id="sec4" class="sec" style="top: 23.471561399075245px; left: -5.008573198970033px; "></div>
+	<div id="sec5" class="sec" style="top: 31.295415198766992px; left: -6.67809759862671px; "></div>
+	<div id="sec6" class="sec" style="top: 39.11926899845874px; left: -8.347621998283387px; "></div>
+</div>
+
+
+</body>
+</html>
+

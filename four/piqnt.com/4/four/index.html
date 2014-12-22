@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+
+  <title>Four - Piqnt</title>
+  <meta name="description" content="The amazing interactive puzzle!">
+  <meta name="keywords" content="piqnt, 4, four, game, puzzle, play, for, 4our, tetris" />
+  <link rel="canonical" href="http://piqnt.com/4/four/" />
+
+  <meta property="og:title" content="Piqnt Four" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="http://piqnt.com/4/four/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://piqnt.com/4/four/logo.png" />
+  <meta property="og:site_name" content="Piqnt" />
+  <meta property="fb:app_id" content="112845592187492" />
+
+  <link rel="shortcut icon" href="favicon.ico" type="image/ico" />
+  
+  <link rel="apple-touch-icon-precomposed" href="icon-57x57-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="icon-72x72-precomposed.png" sizes="72x72">
+  <link rel="apple-touch-icon-precomposed" href="icon-114x114-precomposed.png" sizes="114x114">
+  <link rel="apple-touch-icon-precomposed" href="icon-144x144-precomposed.png" sizes="144x144">
+
+  <link rel="stylesheet" href="/game.css" />
+  
+</head><body>
+
+<div class="container">
+  <div class="columns">
+    <div class="header brand">
+      <h4><a href="/">Piqnt</a></h4>
+    </div>
+  </div>
+  <div class="sixteen columns outer">
+    <div class="header">
+      <div class="logo"><img src="logo.png"></div>
+      <div class="apps">
+        <a onclick="document.getElementById('getit').scrollIntoView();" href="javascript:void(0);"
+          title="Get Apps"><img alt="Get Apps" src="/img/getapps.png" /></a>
+        <a onclick="screenfull&&screenfull.enabled&&screenfull.request(document.getElementById('video'))" href="javascript:void(0);"
+          title="Maximize"><img alt="Maximize" src="/img/maximize.png" /></a>
+      </div>
+      <h3><strong>Four</strong></h3>
+      <h5>The amazing interactive puzzle!</h5>
+    </div>
+    <div class="video">
+      <iframe src="./embed/" id="video"></iframe>
+    </div>
+    <div class="content">
+    
+      <div class="rightside">
+        <div class="social">
+          <div class="fb-like" style="height: 20px; overflow: hidden;" data-href="https://www.facebook.com/Piqnt" data-send="false" data-layout="button_count" data-width="120" data-show-faces="false"></div>
+          <br />
+          <a href="https://twitter.com/piqnt" data-dnt="true" class="twitter-follow-button" data-show-count="true" data-lang="en"></a>
+          <br />
+          <div class="g-follow" data-annotation="bubble" data-height="20" data-href="//plus.google.com/106562444872309948530" data-rel="publisher"></div>
+        </div>
+        <div class="quotes">
+          <blockquote>
+            <p>Four is a new abstract puzzle game that, like the classics of the genre, may melt your brain and can quickly lead you to hopeless addiction. ...a classical, timeless feeling.</p>
+            <cite><a href="http://indiegames.com/2013/05/html5_abstract_puzzle_game_fou.html">Paul Hack, Indie Games</a></cite>
+          </blockquote>
+          <blockquote>
+            <p>...it’s a beautiful piece of work: iconic and timeless.</p>
+            <cite><a href="http://www.pcgamer.com/2013/05/31/the-free-webgame-round-up-36/#attachment_168510">Tom Sykes, PC Gamer</a></cite>
+          </blockquote>
+          <blockquote>
+            <p>In spite of its simple presentation and tame start, Four quickly prove to be very addictive if you have a taste for abstract brain teasers like Tetris.</p>
+            <cite><a href="http://www.gamer.no/artikler/145817/seks-gratisspill-du-bor-prove-i-helgen/">Joachim Froholt, Audun Rodem, GAMER.NO</a></cite>
+          </blockquote>
+        </div>
+      </div>
+    
+      <h4 id="howtoplayfour">How to play Four</h4>
+
+<p>Connect <b>four different colors in row (sequence)</b> to remove them.
+You can create multiple sequence of four colors with one new connection and get higher scores.
+Each circle may have up to 4 connections.</p>
+
+<h4 id="gameover">Game over</h4>
+
+<p>Your game is over when number of circles exceed the maximum, it is indicated as "circles/maximum!" on the top-left corner. Game over warning is viewed on the center.</p>
+
+<p>To restart a game mode select it twice.</p>
+
+<h4 id="specialcolors">Special Colors</h4>
+
+<p>White (wildcard) can be used instead of any color.</p>
+
+<p>Black (bomb) explodes all connected circles up to 3 circles away (4 including itself).</p>
+
+<p>Jokers change color and appear in higher levels to spice up your game!</p>
+
+<h4 id="playmodes">Play Modes</h4>
+
+<p>Colors (O): Remove colors indicated by progress bar to advance to the next level and clear the board.</p>
+
+<p>Score (+): Achieve required score to advance to the next level, unlike Colors mode the board is not cleared with level-ups.</p>
+
+<p>60s (timer): You have 60 seconds to increase your score as much as possible. For circles you remove you are awarded additional seconds to play.</p>
+
+<p>Cross (X): Connect and remove all circles. If there are any circles remained you have lost the game and need to start over.</p>
+      <h4 id="getit">Get It</h4>
+      <p>
+        <a href="https://itunes.apple.com/app/id790314118"  target="_blank">
+          <img alt="App Store" src="/img/get-appstore.png" /></a>&nbsp;
+        <a href="https://play.google.com/store/apps/details?id=com.piqnt.four"  target="_blank">
+          <img alt="Google Play" src="/img/get-play.png" /></a>&nbsp;
+        <a href="https://www.amazon.com/gp/mas/dl/android?p=com.piqnt.four"  target="_blank">
+          <img alt="Amazon Apps" src="/img/get-amazon.png" /></a>&nbsp;
+      </p>
+
+      
+      <h4>Contact and follow</h4>
+      <p>Please feel free to comment below, reach us at <a href="http://facebook.com/piqnt/" target="_blank">fb.com/piqnt</a> or <a href="http://twitter.com/piqnt/" target="_blank">twitter.com/piqnt</a> or send email to four@piqnt.com</p>
+
+    </div>
+    <div class="comments">
+      <div id="livefyre-comments"></div>
+    </div>
+  </div>
+</div>
+  
+  <div id="fb-root"></div>
+
+
+  <script src="/game.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/screenfull.js/1.0.4/screenfull.min.js"></script>
+
+</body></html>

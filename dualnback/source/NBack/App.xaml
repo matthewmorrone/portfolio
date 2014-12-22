@@ -1,0 +1,165 @@
+﻿<Application
+  xmlns="http://schemas.microsoft.com/client/2007"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  x:Class="NBack.App" xmlns:vsm="clr-namespace:System.Windows;assembly=System.Windows">
+  <Application.Resources>
+  
+  <Style x:Key="buttonStyle4" TargetType="Button">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="Button">
+					<Grid x:Name="RootElement">
+						<!--<Border Width="100" Height="50" Background ="Orange" BorderThickness="7" CornerRadius="8,8,8,8">
+							
+						<Rectangle Width="80" Height="30">
+						<Rectangle.Fill>
+							<LinearGradientBrush StartPoint=".5,0" EndPoint=".5,1">
+									<GradientStop Color="#D0FFFFFF" Offset="0" />
+									<GradientStop Color="#90FFFFFF" Offset="0.25" />
+									<GradientStop Color="#60FFFFFF" Offset="0.5" />
+									<GradientStop Color="Orange" Offset="1" />
+							</LinearGradientBrush>
+						</Rectangle.Fill>
+						</Rectangle>
+						</Border>-->
+
+
+                            <Grid.Resources>
+
+                                <Storyboard x:Key="MouseOver State">
+                                <!-- 
+                                            When the button is moused-over, 
+                                            apply the light blue color to the background 
+                                        -->
+                                <ColorAnimation 
+                                            Duration="0:0:0" 
+                                            Storyboard.TargetName="Brush" 
+                                            Storyboard.TargetProperty="Color" 
+                                            To="#FFF7B329" 
+                                        />
+                                </Storyboard>
+                                <Storyboard x:Key="Normal State">
+                                    <!-- 
+                                            When the button is in the normal state, apply the gray background
+                                            and make sure the 
+                                        -->
+                                    <ColorAnimation 
+                                            Duration="0:0:0" 
+                                            Storyboard.TargetName="Brush" 
+                                            Storyboard.TargetProperty="Color" 
+                                            To="#FFFB9B0E" 
+                                        />
+                                </Storyboard>
+                                
+                            </Grid.Resources>
+
+
+
+                            <!--Main color of the button-->
+                            <Rectangle x:Name="Background" RadiusY="3" RadiusX="3">
+                                <Rectangle.Fill>
+                                    <SolidColorBrush x:Name="Brush" Color="Orange" />
+                                </Rectangle.Fill>
+                            </Rectangle>
+
+
+                            <!--Reflection effect-->
+                            <Rectangle 
+                                    x:Name="BackgroundGradient" 
+                                    RadiusY="3" RadiusX="3" 
+                                    StrokeThickness=".75" StrokeLineJoin="Round" 
+                                >
+                                <Rectangle.Fill>
+                                    <LinearGradientBrush x:Name="ReflectionGradient" StartPoint="0.5,0" EndPoint="0.5,1">
+                                    	<GradientStop Color="#A0FFFFFF" Offset="0" />
+                                    	<GradientStop Color="#60FFFFFF" Offset="0.5" />
+                                    	<GradientStop Color="#30FFFFFF" Offset="0.5" />
+                                    	<GradientStop Color="#60FFFFFF" Offset="1" />
+                                    </LinearGradientBrush>
+                                </Rectangle.Fill>
+                                <Rectangle.Stroke>
+                                    <SolidColorBrush x:Name="BorderBrush" Color="#FFFB9B0E" />
+                                </Rectangle.Stroke>
+                            </Rectangle>
+
+
+                            <ContentPresenter
+                      Content="{TemplateBinding Content}"
+                      ContentTemplate="{TemplateBinding ContentTemplate}"
+                      FontFamily="{TemplateBinding FontFamily}"
+                      FontSize="{TemplateBinding FontSize}"
+                      FontStretch="{TemplateBinding FontStretch}"
+                      FontStyle="{TemplateBinding FontStyle}"
+                      FontWeight="{TemplateBinding FontWeight}"
+                      Foreground="{TemplateBinding Foreground}"
+                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                      Padding="{TemplateBinding Padding}"
+                      TextAlignment="{TemplateBinding TextAlignment}"
+                      TextDecorations="{TemplateBinding TextDecorations}"
+                      TextWrapping="{TemplateBinding TextWrapping}"
+                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                      Margin="4,5,4,4" />
+
+                        </Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>	
+  
+  
+		<!-- Resources scoped at the Application level should be defined here. -->
+  	<ControlTemplate x:Key="OrangeButton" TargetType="Button">
+  		<Grid>
+
+
+							
+  			<vsm:VisualStateManager.VisualStateGroups>
+  				<vsm:VisualStateGroup x:Name="FocusStates">
+  					<vsm:VisualState x:Name="Unfocused"/>
+  					<vsm:VisualState x:Name="Focused"/>
+  				</vsm:VisualStateGroup>
+  				<vsm:VisualStateGroup x:Name="CommonStates">
+  					<vsm:VisualState x:Name="MouseOver">
+  						<Storyboard>
+  							<ColorAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="BackgroundGradient" Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)">
+  								<SplineColorKeyFrame KeyTime="00:00:00" Value="#FFBB7611"/>
+  							</ColorAnimationUsingKeyFrames>
+  						</Storyboard>
+  					</vsm:VisualState>
+  					<vsm:VisualState x:Name="Pressed"/>
+  					<vsm:VisualState x:Name="Disabled"/>
+  					<vsm:VisualState x:Name="Normal"/>
+  				</vsm:VisualStateGroup>
+  			</vsm:VisualStateManager.VisualStateGroups>
+		
+  			<Rectangle x:Name="Background" RadiusY="3" RadiusX="3">
+  				<Rectangle.Fill>
+  					<SolidColorBrush x:Name="Brush" Color="Orange" />
+  				</Rectangle.Fill>
+  			</Rectangle>
+
+
+  			<!--Reflection effect-->
+  			<Rectangle 
+  				x:Name="BackgroundGradient" 
+  				RadiusY="3" RadiusX="3" 
+  				StrokeThickness=".75" StrokeLineJoin="Round" 
+                                >
+  				<Rectangle.Fill>
+  					<LinearGradientBrush x:Name="ReflectionGradient" StartPoint="0.5,0" EndPoint="0.5,1">
+  						<GradientStop Color="#A0FFFFFF" Offset="0" />
+  						<GradientStop Color="#60FFFFFF" Offset="0.5" />
+  						<GradientStop Color="#30FFFFFF" Offset="0.5" />
+  						<GradientStop Color="#60FFFFFF" Offset="1" />
+  					</LinearGradientBrush>
+  				</Rectangle.Fill>
+  				<Rectangle.Stroke>
+  					<SolidColorBrush x:Name="BorderBrush" Color="#FFFB9B0E" />
+  				</Rectangle.Stroke>
+  			</Rectangle>
+			<ContentPresenter Margin="4,5,4,4" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" TextAlignment="{TemplateBinding TextAlignment}" TextDecorations="{TemplateBinding TextDecorations}" TextWrapping="{TemplateBinding TextWrapping}"/>							
+  		</Grid>
+  	</ControlTemplate>
+	
+  </Application.Resources>
+</Application>

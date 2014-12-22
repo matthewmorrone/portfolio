@@ -1,0 +1,12 @@
+{
+  "name": "sudokuSolver",
+
+  "description": "Brute force sudoku solver.",
+
+  "keywords": [
+    "sudoku",
+    "solver",
+    "recursive",
+    "brute force"
+  ]
+}

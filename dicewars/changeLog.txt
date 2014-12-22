@@ -1,0 +1,21 @@
+TODO:
+
+-interface for AI
+-map balancing through testing as suggested by n3k5 -> saved maps chooseable
+
+
+
+-proper comments and docstrings for grids.py
+-implement land.py 
+-implement player.py
+-implement dice
+
+
+
+
+
+
+
+
+01.03.2007:
+grids.py implemented

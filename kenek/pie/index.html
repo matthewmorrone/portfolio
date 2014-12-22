@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!-- saved from url=(0034)http://nikesh.github.io/Pie-Menu/# -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>Pie Menu (like Path Menu) using jquery and CSS3 by Nikesh Hayaran</title>
+		<link rel="stylesheet" href="http://nikesh.github.io/Pie-Menu/css/main.css">
+		<link rel="stylesheet" href="http://nikesh.github.io/Pie-Menu/css/css3-github-ribbon.css">
+		<script src="cb=gapi.loaded_0" async=""></script><script src="jquery.min.js"></script><style type="text/css"></style>
+		<script src="jquery.menu.js"></script>
+		<script src="jquery-ui-1.8.20.custom.min.js"></script>
+		<script type="text/javascript" src="plusone.js" gapi_processed="true"></script>
+                <script type="text/javascript">
+		    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+		   document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+		</script><script src="ga.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			try {
+				var pageTracker = _gat._getTracker("UA-12198000-1");
+				pageTracker._trackPageview();
+			} catch(err) {}
+		</script>
+	</head>
+	<body>
+		<div class="content">
+			<h2>Pie Menu (like Path menu ) using jquery and CSS3 </h2>
+			<a href="https://github.com/Nikesh/Pie-Menu" class="github-ribbon">Fork me on GitHub</a>
+			<div class="demo-container">
+				<div class="input-form">
+
+					<form class="form-horizontal">
+					  <fieldset>
+
+						<div class="control-group">
+						  <label class="control-label" for="s_angle">Start Angle</label>
+						  <div class="controls">
+							<div class="input-append">
+								<input type="text" class="input-small" id="s_angle" required="" placeholder="Enter a Angle" pattern="[0-9]*" value="0">
+								<span class="add-on">deg</span>
+							</div>
+						  </div>
+						</div>
+
+						<div class="control-group">
+						  <label class="control-label" for="diff_angle">Displacement Angle</label>
+						  <div class="controls">
+							<div class="input-append">
+								<input type="text" class="input-small" id="diff_angle" required="" placeholder="Enter a Angle" pattern="[0-9]*" value="90">
+								<span class="add-on">deg</span>
+							</div>
+						  </div>
+						</div>
+
+						<div class="control-group">
+						  <label class="control-label" for="radius">Radius Of Circle</label>
+						  <div class="controls">
+							<div class="input-append">
+								<input type="text" class="input-small" id="radius" required="" placeholder="Enter a Radius" pattern="[0-9]*" value="100">
+								<span class="add-on">px</span>
+							</div>
+						  </div>
+						</div>
+						<div class="control-group">
+							<div class="controls">
+								<div class="btn" id="submit_button"><i class="icon-refresh"></i> Refresh</div>
+							 </div>
+						</div>
+					  </fieldset>
+					</form>
+				</div>
+
+				<div class="demo">
+					<p id="info">Updated..</p>
+					<div id="outer_container" class="outer_container ui-draggable active">
+						<a class="menu_button btn-rotate" href="index.html" title="Toggle"><span>Menu Toggle</span></a>
+						<ul class="menu_option">
+						  <li style="-webkit-transform: rotate(90deg); left: 100px; top: 0px;"><a href="index.html"><span>Item</span></a></li>
+						  <li style="-webkit-transform: rotate(67.5deg); left: 92.38795325112868px; top: -38.268343236508976px;"><a href="index.html"><span>Item</span></a></li>
+						  <li style="-webkit-transform: rotate(45deg); left: 70.71067811865476px; top: -70.71067811865474px;"><a href="index.html"><span>Item</span></a></li>
+						  <li style="-webkit-transform: rotate(22.5deg); left: 38.26834323650898px; top: -92.38795325112868px;"><a href="index.html"><span>Item</span></a></li>
+						  <li style="-webkit-transform: rotate(0deg); left: 0.000000000000006123031769111886px; top: -100px;"><a href="index.html"><span>Item</span></a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="drag">* Draggable Element</div>
+				<div class="clearfix"></div>
+			</div>
+			<h5>* Please read <a href="https://github.com/Nikesh/Pie-Menu/blob/master/README.md">README.md</a> file for explanation.</h5>
+		</div>
+		<script>
+		function PieMenuInit(){
+			$('#outer_container').PieMenu({
+				'starting_angel':0,
+				'angel_difference' : 360,
+				'radius':100,
+			});
+		}
+		$(function() {
+			$("#submit_button").click(function() {reset(); });
+			$( "#outer_container" ).draggable();
+			PieMenuInit();
+
+		});
+		function reset(){
+			if($(".menu_button").hasClass('btn-rotate'))
+			$(".menu_button").trigger('click');
+
+			$("#info").fadeIn("slow").fadeOut("slow");
+			PieMenuInit();
+		}
+		</script>
+
+
+</body></html>

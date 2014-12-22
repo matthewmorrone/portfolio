@@ -1,0 +1,33 @@
+table
+{
+	width: 450px;
+	border-collapse: collapse;
+}
+body
+{
+	font-family: arial;
+}
+td
+{
+	width: 50px;
+	height: 50px;
+	border: 1px solid black;
+	text-align: center;
+	border-collapse: collapse;
+}
+.top
+{
+	border-top: 2px solid black;
+}
+.bottom
+{
+	border-bottom: 2px solid black;
+}
+.left
+{
+	border-left: 2px solid black;
+}
+.right
+{
+	border-right: 2px solid black;
+}

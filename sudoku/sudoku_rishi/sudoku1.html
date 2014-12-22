@@ -1,0 +1,160 @@
+<html>
+	<head>
+	<title>sudoku!</title>
+	<style>
+/*	table, td
+	{
+		border: 1px solid black;
+		border-collapse: collapse;
+	}*/
+/*	td td
+	{
+		text-align: center;
+		height: 25px;
+		width: 25px;
+	}*/
+	</style>
+	<script type="text/javascript">
+	window.onload = function()
+	{
+		document.getElementById("contents").innerHTML = generate(4, 4)
+		updateBoard()
+		reduceBoard()
+	}
+	var board = new Array(new Array(1, 0, 0, 0), new Array(0, 0, 0, 0), new Array(0, 0, 0, 0), new Array(0, 0, 0, 1))
+	var lastMove = -1
+	var lastValid = new Array()
+
+	function checkBox(x, y, i)
+	{
+	// is i valid at board[x][y]?
+		return true
+	}
+
+	function checkRow(y, x, i)
+	{
+		// is i valid at board[x][y]
+		// check all other Xs for that y
+		// to see if an i exists
+		for(j = 0; j < 4; j++)
+		{
+			if (j == x) {continue}
+			if(board[j][y] == i)
+			{
+				//alert("("+x+","+y+") is clashing with --> ("+j+","+y+") for value "+i);
+				return false
+			}
+		}
+		return true
+	}
+
+	function checkCol(x, y, i)
+	{
+		/*
+		var free = true;
+		for(j=0; j<4; j++)
+		{
+			if (j==y) continue;
+			if(i == board[y][j])
+			{
+			free = false;
+			break;
+			}
+		}
+		return free;
+		*/
+		return true
+	}
+
+	function undo()
+	{
+		if (lastMove != -1)
+		{
+			lastMove = lastMove.toString()
+			var x = lastMove.substring(0,1)
+			var y = lastMove.substring(1,2)
+			board[x][y] = 0
+			updateBoard()
+			lastMove = -1
+		}
+	}
+
+	function load(val, divid)
+	{
+		divid = divid.toString()
+		var x = divid.substring(0, 1)
+		var y = divid.substring(1, 2)
+		board[x][y] = val
+		lastMove = divid
+		updateBoard()
+	}
+	function generate(x, y)
+	{
+		result = "<table>"
+		for (i = 0; i < y; i++)
+		{
+			result += "<tr>"
+			for (j = 0; j < x; j++)
+			{
+				result += "<td><div id='"+i+j+"'></div></td>"
+			}		
+			result += "</tr>"		
+		}
+		result += "</table>"
+		return result
+	}
+	function updateBoard()
+	{
+		for (x = 0; x < 4; x++)
+		{
+			for (y = 0; y < 4; y++)
+			{
+				var tableOut = "";
+				var divchange = (x.toString())+(y.toString())
+				if(board[x][y] == 0)
+				{
+					tableOut += ("<table>")
+					for (i = 1; i <= 4; i++)
+					{
+						i % 2 == 1 ? tableOut += ("<tr>") : ""
+						tableOut += ("<td><a onclick='load("+i+",\""+divchange+"\")'>"+i+"</a></td>")
+						i % 2 == 0 ? tableOut += ("</tr>") : ""
+					}
+					tableOut += ("</table>")  
+					document.getElementById(divchange).innerHTML = tableOut
+				}
+				else
+				{
+					document.getElementById(divchange).innerHTML = "<h2>"+board[x][y]+"</h2>"
+				}			      
+			}
+		}
+	}
+	function reduceBoard()
+	{
+		for (x = 0; x < 4; x++)
+		{
+			for (y = 0; y < 4; y++)
+			{
+				
+				if(board[x][y] == 1)
+				{
+					alert(x+" "+y+" "+document.getElementById(divchange).innerHTML)			
+				}
+			}
+		}		
+	}
+	function reduceRow(y, i)
+	{
+		for (x = 0; x < 4; x++)
+		{
+			var divchange = (x.toString())+(y.toString())
+		}		
+	}
+	</script>
+	</head>
+	<body>
+	<div id="contents"></div>
+	<input type="button" name="undo" value="undo" onclick="undo()" />
+	</body>
+</html>

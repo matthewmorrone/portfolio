@@ -1,0 +1,78 @@
+<html>
+  <style type = "text/css">
+
+    body
+    {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    table
+    { 
+      margin-left: auto;
+      margin-right: auto;
+    }
+    table, th, td 
+    {
+      border: 1px solid black; 
+      border-collapse: collapse; 
+    }
+    th                 
+    {
+      font-family: serif; 
+      font-size: 12pt; 
+      text-transform: lowercase; 
+      text-align: center; 
+      width: 90px;
+    }
+    td
+    {
+      font-family: sans-serif;
+      padding: 2px; 
+      text-align: center; 
+    }    
+    td.correct         
+    {
+      color: red;   
+      font-size: 32pt; 
+      text-transform: uppercase; 
+      width: 90px; 
+      height: 90px;
+    }
+    td.present         
+    {
+      color: blue;  
+      font-size: 32pt; 
+      text-transform: uppercase; 
+      width: 90px; 
+      height: 90px;
+    }
+    td.wrong           
+    {
+      color: black; 
+      font-size: 32pt; 
+      text-transform: lowercase; 
+      width: 90px; 
+      height: 90px;
+    }
+    td.title
+    {
+      font-size: 20pt;
+    }
+    input[type = text]
+    {
+      width: 99%; 
+      height: 100%;
+    }    
+    input[type = password]
+    {
+      width: 99%; 
+      height: 100%;
+    }   
+    a.image, img 
+	{
+		max-height: 35px;
+		max-width: 35px;
+		float: left;
+	}
+  </style>
+</html>

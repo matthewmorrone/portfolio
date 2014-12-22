@@ -1,0 +1,67 @@
+<html>
+<head>
+<title>Login</title>
+<style>
+body
+{
+	width: 100%;
+	height: 100%;
+	font-family: arial;
+}
+table
+{
+	margin: auto;
+	margin-top: 50px;
+}
+table, td
+{
+	border: 1px solid gray;
+	border-collapse: collapse;
+}
+th
+{
+	text-align: right;
+}
+
+
+</style>
+<script>
+function load(mode)
+{
+	var xmlhttp = new XMLHttpRequest()
+	xmlhttp.onreadystatechange = function()
+	{
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+		{
+			if (xmlhttp.responseText == 23)
+			{
+				window.location.href = "lingo.html"
+			}
+			else
+			{
+				document.getElementById("message").innerHTML = "Try Again?";
+			}
+		}
+	}
+	xmlhttp.open("POST", "serve.php", true)
+	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xmlhttp.send("mode="+mode);
+}
+function submit()
+{
+	load("verify&email="+document.getElementById("email").value+"&password="+document.getElementById("password").value)
+}
+
+</script>
+</head>
+<body>
+	<table>
+		<caption id="message">Lingo</caption>
+		<tr><th><input type="text" name="email" id="email" placeholder="email" autofocus="autofocus" /></th><td>Email</td></tr>
+		<tr><th><input type="password" name="password" id="password" placeholder="password" /></th><td>Password</td></tr>
+		<tr><th><input type="checkbox" name="forgot" id="forgot" /></th><td>Forgot Password?</td></tr>
+		<tr><th><input type="checkbox" name="newuser" id="newuser"></th><td>New User?</td></tr>
+		<tr><th><input type="submit" id="submit" value="Submit" onclick="submit()" /></th><td>Submit</td></tr>
+	</table>
+</body>
+</html>
